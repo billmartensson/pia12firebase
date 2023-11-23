@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		E85D2BFA2B0F40D700C7EF3A /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E85D2BF92B0F40D700C7EF3A /* LoginView.swift */; };
+		E85D2BFC2B0F41FF00C7EF3A /* StartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E85D2BFB2B0F41FF00C7EF3A /* StartView.swift */; };
+		E85D2BFE2B0F583B00C7EF3A /* TodoAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = E85D2BFD2B0F583B00C7EF3A /* TodoAPI.swift */; };
 		E8F259DC2B0B4E0C00485FEA /* pia12firebaseApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8F259DB2B0B4E0C00485FEA /* pia12firebaseApp.swift */; };
 		E8F259DE2B0B4E0C00485FEA /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8F259DD2B0B4E0C00485FEA /* ContentView.swift */; };
 		E8F259E02B0B4E0F00485FEA /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E8F259DF2B0B4E0F00485FEA /* Assets.xcassets */; };
@@ -39,15 +42,20 @@
 		E8F25A1D2B0B531000485FEA /* FirebaseRemoteConfigSwift in Frameworks */ = {isa = PBXBuildFile; productRef = E8F25A1C2B0B531000485FEA /* FirebaseRemoteConfigSwift */; };
 		E8F25A1F2B0B531000485FEA /* FirebaseStorage in Frameworks */ = {isa = PBXBuildFile; productRef = E8F25A1E2B0B531000485FEA /* FirebaseStorage */; };
 		E8F25A212B0B531000485FEA /* FirebaseStorageCombine-Community in Frameworks */ = {isa = PBXBuildFile; productRef = E8F25A202B0B531000485FEA /* FirebaseStorageCombine-Community */; };
+		E8F8637F2B0F5A0400C6F5EF /* Todoitem.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8F8637E2B0F5A0400C6F5EF /* Todoitem.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		E85D2BF92B0F40D700C7EF3A /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
+		E85D2BFB2B0F41FF00C7EF3A /* StartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartView.swift; sourceTree = "<group>"; };
+		E85D2BFD2B0F583B00C7EF3A /* TodoAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodoAPI.swift; sourceTree = "<group>"; };
 		E8F259D82B0B4E0C00485FEA /* pia12firebase.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = pia12firebase.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E8F259DB2B0B4E0C00485FEA /* pia12firebaseApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = pia12firebaseApp.swift; sourceTree = "<group>"; };
 		E8F259DD2B0B4E0C00485FEA /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		E8F259DF2B0B4E0F00485FEA /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		E8F259E22B0B4E0F00485FEA /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		E8F259E92B0B50D400485FEA /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		E8F8637E2B0F5A0400C6F5EF /* Todoitem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Todoitem.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -110,6 +118,10 @@
 				E8F259E92B0B50D400485FEA /* GoogleService-Info.plist */,
 				E8F259DB2B0B4E0C00485FEA /* pia12firebaseApp.swift */,
 				E8F259DD2B0B4E0C00485FEA /* ContentView.swift */,
+				E8F8637E2B0F5A0400C6F5EF /* Todoitem.swift */,
+				E85D2BFD2B0F583B00C7EF3A /* TodoAPI.swift */,
+				E85D2BF92B0F40D700C7EF3A /* LoginView.swift */,
+				E85D2BFB2B0F41FF00C7EF3A /* StartView.swift */,
 				E8F259DF2B0B4E0F00485FEA /* Assets.xcassets */,
 				E8F259E12B0B4E0F00485FEA /* Preview Content */,
 			);
@@ -227,8 +239,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E85D2BFA2B0F40D700C7EF3A /* LoginView.swift in Sources */,
+				E85D2BFE2B0F583B00C7EF3A /* TodoAPI.swift in Sources */,
 				E8F259DE2B0B4E0C00485FEA /* ContentView.swift in Sources */,
 				E8F259DC2B0B4E0C00485FEA /* pia12firebaseApp.swift in Sources */,
+				E8F8637F2B0F5A0400C6F5EF /* Todoitem.swift in Sources */,
+				E85D2BFC2B0F41FF00C7EF3A /* StartView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

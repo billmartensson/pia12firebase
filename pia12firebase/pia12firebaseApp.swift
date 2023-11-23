@@ -24,7 +24,7 @@ struct pia12firebaseApp: App {
     
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            StartView()
         }
     }
 }
