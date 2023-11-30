@@ -7,6 +7,8 @@
 
 import SwiftUI
 import Firebase
+import FirebaseStorage
+import PhotosUI
 
 struct ContentView: View {
     
@@ -14,8 +16,24 @@ struct ContentView: View {
             
     @StateObject var todoapi = TodoAPI()
     
+    @State var theimage : UIImage?
+    
+    @State var galleryimage : Image?
+    @State private var selectedPhoto: PhotosPickerItem?
+    
     var body: some View {
         VStack {
+            
+            if galleryimage != nil {
+                galleryimage!
+                    .resizable()
+                    .frame(width: 100.0, height: 100.0)
+            }
+            
+            PhotosPicker(selection: $selectedPhoto, matching: .images) {
+                                            Text("Välj bild")
+                                        }
+            
             HStack {
                 TextField("Todo...", text: $addtodo)
                 
@@ -94,11 +112,58 @@ struct ContentView: View {
         .onAppear() {
             //dofbstuff()
             todoapi.loadtodo()
+            
+            testGetImage()
+        }
+        .task(id: selectedPhoto) {
+                     galleryimage = try? await selectedPhoto?.loadTransferable(type: Image.self)
+                    
+                    testUpload(theimage: galleryimage!)
+
+                }
+    }
+    
+    func testGetImage() {
+        
+        let storage = Storage.storage()
+        let storageRef = storage.reference()
+        
+        let frog = storageRef.child("frog.jpg")
+        
+        print("IMAGE DOWNLOAD")
+        frog.getData(maxSize: 1 * 1024 * 1024) { data, error in
+          if let error = error {
+            // Uh-oh, an error occurred!
+          } else {
+            // Data for "images/island.jpg" is returned
+              
+              DispatchQueue.main.async {
+                  theimage = UIImage(data: data!)
+              }
+              
+              
+              
+              
+              print(data!.count)
+          }
         }
     }
     
-    
-    
+    func testUpload(theimage : Image) {
+        let storage = Storage.storage()
+        let storageRef = storage.reference()
+        
+        let saveimage = storageRef.child("bilden.jpg")
+        
+        
+        /*
+        let uploadTask = saveimage.putData(data, metadata: nil) { (metadata, error) in
+            
+            
+        }
+        */
+        
+    }
 }
 
 #Preview {

@@ -7,12 +7,15 @@
 
 import Foundation
 import Firebase
+import FirebaseStorage
 
 enum TodoFilterType {
     case all, done, notdone
 }
 
 class TodoAPI : ObservableObject {
+    
+    var testid = UUID().uuidString
     
     var isPreview: Bool {
         return ProcessInfo.processInfo.environment["XCODE_RUNNING_FOR_PREVIEWS"] == "1"
@@ -23,6 +26,8 @@ class TodoAPI : ObservableObject {
     @Published var todoitems = [Todoitem]()
 
     var filtertype = TodoFilterType.all
+    
+    @Published var testimage : UIImage?
     
     func savetodo(addtodo : String) {
         
@@ -163,6 +168,33 @@ class TodoAPI : ObservableObject {
         
         loadtodo()
     }
+    
+    
+    func testGetImage() {
+        
+        let storage = Storage.storage()
+        let storageRef = storage.reference()
+        
+        let frog = storageRef.child("frog.jpg")
+        
+        print("IMAGE DOWNLOAD")
+        frog.getData(maxSize: 1 * 1024 * 1024) { data, error in
+          if let error = error {
+            // Uh-oh, an error occurred!
+          } else {
+            // Data for "images/island.jpg" is returned
+              
+              DispatchQueue.main.async {
+                  self.testimage = UIImage(data: data!)
+              }
+              
+                          
+              print(data!.count)
+          }
+        }
+    }
+    
+    
     
     /*
     func dofbstuff() {
