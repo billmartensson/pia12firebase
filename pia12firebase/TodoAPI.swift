@@ -77,22 +77,7 @@ class TodoAPI : ObservableObject {
     func loadtodo() {
         
         if isPreview {
-            
-            var temp1 = Todoitem()
-            temp1.isdone = false
-            temp1.title = "AAA"
-            temp1.todoid = "A"
-
-            var temp2 = Todoitem()
-            temp2.isdone = true
-            temp2.title = "BBB"
-            temp2.todoid = "B"
-
-            var allthetodo = [Todoitem]()
-            allthetodo.append(temp1)
-            allthetodo.append(temp2)
-
-            self.alltodoitems = allthetodo
+            self.alltodoitems = doexampletodo()
             doTodoFilter()
             
             return
@@ -102,7 +87,9 @@ class TodoAPI : ObservableObject {
 
         ref = Database.database().reference()
         
-        let uid = Auth.auth().currentUser!.uid
+        var uid = Auth.auth().currentUser!.uid
+        
+        //uid = "wsQcVYIKYTeDOJkr6QF3Inrvc2L2"
         
         ref.child("todolist").child(uid).getData(completion: { error, snapshot in
             /*
@@ -110,6 +97,8 @@ class TodoAPI : ObservableObject {
                 addtodo = thetodo
             }
             */
+            
+            print(error)
             
             var allthetodo = [Todoitem]()
 
@@ -192,8 +181,17 @@ class TodoAPI : ObservableObject {
               print(data!.count)
           }
         }
+        
     }
     
+    func getimageother() {
+        let storage = Storage.storage()
+        let storageRef = storage.reference()
+        
+        let frog = storageRef.child("frog.jpg")
+        
+        
+    }
     
     
     /*
@@ -211,4 +209,101 @@ class TodoAPI : ObservableObject {
         })
     }
     */
+    
+    
+    func loginother(loginemail : String, loginpass : String) async -> Bool {
+        do {
+            let authresult = try await Auth.auth().signIn(withEmail: loginemail, password: loginpass)
+            
+            if Auth.auth().currentUser != nil {
+                return true
+            }
+            
+        } catch {
+            // ERROR ERROR
+        }
+        
+        return false
+    }
+    
+    func dosomeloading() async {
+        var ref: DatabaseReference!
+
+        ref = Database.database().reference()
+        
+        do {
+            let somedata = try await ref.child("people").child("USERID").getData()
+            /*
+            for person in somedata.children {
+                let personsnap = person as! DataSnapshot
+            }
+            */
+            let userdict = somedata.value as! [String: String]
+            let kompisid = userdict["kompis"]
+            let kompisdata = try await ref.child("people").child(kompisid!).getData()
+            
+            
+        } catch {
+            // ERROR
+        }
+    }
+    
+    
+    var bilder = ["A", "B", "C", "D"]
+    
+    func laddabilder(imagenumber : Int) {
+        
+        /*
+         loadimage("BILD") {
+            
+         }
+         
+         for bild in bilder {
+            loadimage(bild) {
+                
+            }
+         }
+         
+         for bild in bilder {
+            let imagedata = await loadimage(bild)
+         }
+         
+         */
+        
+        if imagenumber == bilder.count {
+            print("VI ÄR NU KLARA")
+            return
+        }
+        
+        print("LADDA BILD")
+        print(bilder[imagenumber])
+        // {
+            laddabilder(imagenumber: imagenumber + 1)
+        // }
+    }
+    
+    
+    func doexampletodo() -> [Todoitem] {
+        
+        var examples = [Todoitem]()
+        
+        var temp1 = Todoitem()
+        temp1.isdone = false
+        temp1.title = "AAA"
+        temp1.todoid = "A"
+
+        var temp2 = Todoitem()
+        temp2.isdone = true
+        temp2.title = "BBB"
+        temp2.todoid = "B"
+
+        var allthetodo = [Todoitem]()
+        examples.append(temp1)
+        examples.append(temp2)
+        
+        return examples
+        
+    }
+    
+    
 }

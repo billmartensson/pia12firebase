@@ -23,7 +23,7 @@ struct ContentView: View {
     
     var body: some View {
         VStack {
-            
+            /*
             if galleryimage != nil {
                 galleryimage!
                     .resizable()
@@ -33,7 +33,7 @@ struct ContentView: View {
             PhotosPicker(selection: $selectedPhoto, matching: .images) {
                                             Text("Välj bild")
                                         }
-            
+            */
             HStack {
                 TextField("Todo...", text: $addtodo)
                 
@@ -111,16 +111,21 @@ struct ContentView: View {
         .padding()
         .onAppear() {
             //dofbstuff()
+            
+            //let siffra = Int("banan")!
+            
             todoapi.loadtodo()
             
             testGetImage()
         }
+        /*
         .task(id: selectedPhoto) {
                      galleryimage = try? await selectedPhoto?.loadTransferable(type: Image.self)
                     
                     testUpload(theimage: galleryimage!)
 
                 }
+         */
     }
     
     func testGetImage() {

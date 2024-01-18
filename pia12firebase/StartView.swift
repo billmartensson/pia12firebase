@@ -10,17 +10,23 @@ import Firebase
 
 struct StartView: View {
     
-    @State var isloggedin = false
+    @State var isloggedin : Bool?
     
     var body: some View {
         VStack {
-            if isloggedin {
+            if isloggedin == nil {
+                Text("Loading...")
+            }
+            if isloggedin == true {
                 ContentView()
-            } else {
+            }
+            if isloggedin == false{
                 LoginView()
             }
         }
         .onAppear() {
+            TodoAPI().laddabilder(imagenumber: 0)
+            
             var handle = Auth.auth().addStateDidChangeListener { auth, user in
               
                 if Auth.auth().currentUser == nil {

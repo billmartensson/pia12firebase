@@ -22,6 +22,14 @@ struct LoginView: View {
 
             Button(action: {
                 login()
+                
+                Task {
+                    let loginresult = await TodoAPI().loginother(loginemail: loginemail, loginpass: loginpass)
+                    
+                    if loginresult {
+                        print("OK LOGIN")
+                    }
+                }
             }, label: {
                 Text("Login")
             })
@@ -36,6 +44,8 @@ struct LoginView: View {
             
         }
     }
+    
+    
     
     func login() {
         Auth.auth().signIn(withEmail: loginemail, password: loginpass) { authResult, error in
